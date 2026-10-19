@@ -56,7 +56,8 @@ intelligent-linux-server-monitoring/
 
 7. To schedule monitoring every five minutes, configure a Cron entry using the correct absolute path to `monitor.sh`.
 
-## Grafana Dashboard
+_IP:9100"]
+```## Grafana Dashboard
 ## Prometheus and Node Exporter Configuration
 
 Prometheus collects Linux server metrics through Node Exporter.
@@ -72,22 +73,24 @@ scrape_configs:
 
 **Important:** Replace `YOUR_SERVER_IP` with the actual IP address or hostname of the Linux server running Node Exporter before starting or reloading Prometheus. Do not use the placeholder literally in your active configuration.
 
-For example, if Node Exporter runs on the same machine as Prometheus, you may use `localhost:9100`. If they run on separate machines, use the reachable IP address of the Node Exporter server.
+If Node Exporter runs on the same machine as Prometheus, you can use `localhost:9100`. If they run on separate machines, use the reachable IP address of the Node Exporter server.
 
-The included `grafana-dashboard.json` should be imported into Grafana and connected to the appropriate Prometheus data source.
-The included dashboard JSON defines panels for:
+## Grafana Dashboard
+
+The included `grafana-dashboard.json` defines panels for:
 
 - CPU usage percentage
 - Memory usage percentage
 - Root filesystem disk usage percentage
 
-The dashboard uses Prometheus metrics from Node Exporter. Update the Prometheus data source and scrape configuration to match your environment.
+To use the dashboard:
 
-## Security Notes
+1. Open Grafana.
+2. Add or select your Prometheus data source.
+3. Import `grafana-dashboard.json`.
+4. Verify that the dashboard queries match your Prometheus metrics and scrape job configuration.
 
-- Do not commit passwords, SMTP credentials, private keys, or other secrets.
-- Configure email credentials securely on the host.
-- Review `.gitignore` before committing files.
+Update the Prometheus data source and scrape configuration to match your environment.
 
 ## Project Goal
 
