@@ -56,8 +56,6 @@ intelligent-linux-server-monitoring/
 
 7. To schedule monitoring every five minutes, configure a Cron entry using the correct absolute path to `monitor.sh`.
 
-_IP:9100"]
-```## Grafana Dashboard
 ## Prometheus and Node Exporter Configuration
 
 Prometheus collects Linux server metrics through Node Exporter.
@@ -91,6 +89,12 @@ To use the dashboard:
 4. Verify that the dashboard queries match your Prometheus metrics and scrape job configuration.
 
 Update the Prometheus data source and scrape configuration to match your environment.
+
+## Security Notes
+
+- Do not commit passwords, SMTP credentials, private keys, or other secrets.
+- Configure email credentials securely on the host.
+- Review `.gitignore` before committing files.
 
 ## Project Goal
 
