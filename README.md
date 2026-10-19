@@ -57,7 +57,24 @@ intelligent-linux-server-monitoring/
 7. To schedule monitoring every five minutes, configure a Cron entry using the correct absolute path to `monitor.sh`.
 
 ## Grafana Dashboard
+## Prometheus and Node Exporter Configuration
 
+Prometheus collects Linux server metrics through Node Exporter.
+
+Configure the Node Exporter target in your Prometheus configuration file (`prometheus.yml`) using your server's reachable IP address:
+
+```yaml
+scrape_configs:
+  - job_name: "centos-linux"
+    static_configs:
+      - targets: ["YOUR_SERVER_IP:9100"]
+```
+
+**Important:** Replace `YOUR_SERVER_IP` with the actual IP address or hostname of the Linux server running Node Exporter before starting or reloading Prometheus. Do not use the placeholder literally in your active configuration.
+
+For example, if Node Exporter runs on the same machine as Prometheus, you may use `localhost:9100`. If they run on separate machines, use the reachable IP address of the Node Exporter server.
+
+The included `grafana-dashboard.json` should be imported into Grafana and connected to the appropriate Prometheus data source.
 The included dashboard JSON defines panels for:
 
 - CPU usage percentage
